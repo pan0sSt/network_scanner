@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
-import scapy.all as scapy
-import argparse
+import scapy.all as scapy # handle tasks like scanning and network discovery
+import argparse           # get values as arguments
 
-
+# function that handles the user arguments
 def get_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument("-t", "--target", dest="target", help="Target IP / IP range.")
@@ -12,6 +12,7 @@ def get_arguments():
         parser.error("[-] Please specify a target, use --help for more info.")
     return options
 
+# function that scans network for targeted IP
 def scan(ip):
     arp_request = scapy.ARP(pdst=ip) # ARP object creation, asks who has target IP
     broadcast   = scapy.Ether(dst="ff:ff:ff:ff:ff:ff") # Ethernet object creation, set destination MAC to broadcast MAC
